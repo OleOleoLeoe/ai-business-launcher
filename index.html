@@ -11,10 +11,9 @@
       padding:0;
     }
     .container {
-      max-width:900px;
+      max-width:800px;
       margin:auto;
       padding:60px 20px;
-      text-align:center;
     }
     .card {
       background:white;
@@ -23,10 +22,24 @@
       box-shadow:0 10px 30px rgba(0,0,0,0.05);
     }
     h1 {
-      font-size:36px;
+      text-align:center;
+    }
+    label {
+      display:block;
+      margin-top:20px;
+      font-weight:bold;
+    }
+    select, input {
+      width:100%;
+      padding:12px;
+      margin-top:8px;
+      border-radius:8px;
+      border:1px solid #ddd;
     }
     button {
-      padding:15px 30px;
+      margin-top:30px;
+      width:100%;
+      padding:15px;
       border:none;
       border-radius:8px;
       background:#4f7cff;
@@ -37,6 +50,13 @@
     button:hover {
       background:#3a65d9;
     }
+    .result {
+      margin-top:40px;
+      padding:20px;
+      background:#f0f3ff;
+      border-radius:10px;
+      display:none;
+    }
   </style>
 </head>
 <body>
@@ -44,10 +64,64 @@
 <div class="container">
   <div class="card">
     <h1>AI Business Launcher</h1>
-    <p>Turn your time, skills, or ideas into a real income plan.</p>
-    <button>Generate My Income Plan</button>
+
+    <label>How much money can you invest?</label>
+    <select id="money">
+      <option value="0">$0</option>
+      <option value="low">$1 – $100</option>
+      <option value="mid">$100 – $500</option>
+      <option value="high">$500+</option>
+    </select>
+
+    <label>How much time do you have per day?</label>
+    <select id="time">
+      <option value="low">Less than 1 hour</option>
+      <option value="mid">1–3 hours</option>
+      <option value="high">3+ hours</option>
+    </select>
+
+    <label>What do you prefer?</label>
+    <select id="style">
+      <option value="people">Working with people</option>
+      <option value="building">Building things</option>
+      <option value="both">Both</option>
+    </select>
+
+    <button onclick="generate()">Generate My Plan</button>
+
+    <div class="result" id="result"></div>
   </div>
 </div>
 
+<script>
+function generate() {
+  const money = document.getElementById("money").value;
+  const time = document.getElementById("time").value;
+  const style = document.getElementById("style").value;
+
+  let path = "";
+  let plan = "";
+
+  if (money === "0" && time !== "low") {
+    path = "Freelancing";
+    plan = "Offer services like AI setup, social media help, or website creation to clients who already have money.";
+  } else if (style === "people") {
+    path = "Local Business AI";
+    plan = "Sell AI tools like chatbots or automation to local businesses for monthly fees.";
+  } else {
+    path = "Software / AI Tools";
+    plan = "Build a simple AI tool and charge users monthly to use it.";
+  }
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").innerHTML = `
+    <h3>Your best path: ${path}</h3>
+    <p>${plan}</p>
+    <p><strong>Next step:</strong> Start by researching your first potential customer today.</p>
+  `;
+}
+</script>
+
 </body>
 </html>
+
