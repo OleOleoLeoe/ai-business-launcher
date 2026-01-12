@@ -89,7 +89,13 @@
 
     <button onclick="generate()">Generate My Plan</button>
 
-    <div class="result" id="result"></div>
+  <div class="result" id="result"></div>
+
+<div style="margin-top:20px;">
+  <input id="email" type="email" placeholder="Enter your email to save your plan" />
+  <button onclick="savePlan()">Save My Plan</button>
+  <button onclick="loadPlan()">Load My Plan</button>
+</div>
   </div>
 </div>
 
@@ -198,3 +204,27 @@ document.getElementById("result").innerHTML = `
 </body>
 </html>
 
+async function savePlan() {
+  const email = document.getElementById("email").value;
+  const plan = document.getElementById("result").innerHTML;
+
+  await fetch("https://ai-business-api.heggenesole08.workers.dev/save", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, plan })
+  });
+
+  alert("Your plan has been saved!");
+}
+
+async function loadPlan() {
+  const email = document.getElementById("email").value;
+  const res = await fetch("https://ai-business-api.heggenesole08.workers.dev/load?email=" + email);
+  const data = await res.json();
+
+  if (data.plan) {
+    document.getElementById("result").innerHTML = data.plan;
+  } else {
+    alert("No plan found for this email.");
+  }
+}
