@@ -21,14 +21,8 @@
       border-radius:12px;
       box-shadow:0 10px 30px rgba(0,0,0,0.05);
     }
-    h1 {
-      text-align:center;
-    }
-    label {
-      display:block;
-      margin-top:20px;
-      font-weight:bold;
-    }
+    h1 { text-align:center; }
+    label { display:block; margin-top:20px; font-weight:bold; }
     select, input {
       width:100%;
       padding:12px;
@@ -46,9 +40,6 @@
       color:white;
       font-size:18px;
       cursor:pointer;
-    }
-    button:hover {
-      background:#3a65d9;
     }
     .result {
       margin-top:40px;
@@ -89,13 +80,13 @@
 
     <button onclick="generate()">Generate My Plan</button>
 
-  <div class="result" id="result"></div>
+    <div class="result" id="result"></div>
 
-<div style="margin-top:20px;">
-  <input id="email" type="email" placeholder="Enter your email to save your plan" />
-  <button onclick="savePlan()">Save My Plan</button>
-  <button onclick="loadPlan()">Load My Plan</button>
-</div>
+    <div style="margin-top:20px;">
+      <input id="email" type="email" placeholder="Enter your email to save your plan" />
+      <button onclick="savePlan()">Save My Plan</button>
+      <button onclick="loadPlan()">Load My Plan</button>
+    </div>
   </div>
 </div>
 
@@ -108,101 +99,20 @@ function generate() {
   let path = "";
   let plan = "";
 
-if (money === "0" && time !== "low") {
-  path = "Freelancing";
-  plan = `
-  <strong>What to sell:</strong> Websites, AI setup, social media services<br>
-  <strong>Who to sell to:</strong> Small online businesses<br>
-  <strong>How to get clients:</strong> Fiverr, Upwork, cold DMs<br>
-  <strong>How you make money:</strong> $50 – $500 per job
-  `;
-} else if (style === "people") {
-  path = "Local Business AI";
-  plan = `
-  <strong>What to sell:</strong> AI chatbots & automation for restaurants, gyms, shops<br>
-  <strong>Who to sell to:</strong> Local business owners<br>
-  <strong>How to get clients:</strong> Google Maps + cold email or walk-ins<br>
-  <strong>How you make money:</strong> $99 per business per month
-  `;
-} else {
-  path = "Software / AI Tools";
-  plan = `
-  <strong>What to sell:</strong> A simple AI web tool<br>
-  <strong>Who to sell to:</strong> A niche (coaches, shops, agents)<br>
-  <strong>How to get users:</strong> Social media + landing page<br>
-  <strong>How you make money:</strong> $10–$50 per user per month
-  `;
-}
+  if (money === "0" && time !== "low") {
+    path = "Freelancing";
+    plan = "Freelancing services";
+  } else if (style === "people") {
+    path = "Local Business AI";
+    plan = "AI tools for local businesses";
+  } else {
+    path = "Software / AI Tools";
+    plan = "AI SaaS product";
+  }
 
   document.getElementById("result").style.display = "block";
-let steps = "";
-
-if (path === "Local Business AI") {
-  steps = `
-  <strong>Your 30-Day Roadmap:</strong><br><br>
-
-  <strong>Week 1 — Foundation</strong><br>
-  • Choose one niche (restaurants, gyms, dentists)<br>
-  • Learn their main problems<br>
-  • Pick one simple AI service<br>
-  • Set a fair monthly price ($50–$150)<br><br>
-
-  <strong>Week 2 — Outreach</strong><br>
-  • Find 30–50 businesses on Google Maps<br>
-  • Write a friendly message<br>
-  • Contact 5–10 businesses per day<br>
-  • Track who replies<br><br>
-
-  <strong>Week 3 — Sales Calls</strong><br>
-  • Follow up with interested businesses<br>
-  • Book 1–3 calls<br>
-  • Improve your offer based on feedback<br><br>
-
-  <strong>Week 4 — First Client</strong><br>
-  • Send proposals<br>
-  • Offer a trial if needed<br>
-  • Deliver value<br>
-  • Get your first paying customer
-  `;
+  document.getElementById("result").innerHTML = "<h3>Your best path: " + path + "</h3><p>" + plan + "</p>";
 }
-
-if (path === "Freelancing") {
-  steps = `
-  <strong>Your 7-Day Plan:</strong><br>
-  Day 1: Choose one service to sell<br>
-  Day 2: Create Fiverr or Upwork profile<br>
-  Day 3: Write 3 gig offers<br>
-  Day 4: Send 10 proposals<br>
-  Day 5: Improve your profile<br>
-  Day 6: Send 10 more proposals<br>
-  Day 7: Land your first client
-  `;
-}
-
-if (path === "Software / AI Tools") {
-  steps = `
-  <strong>Your 7-Day Plan:</strong><br>
-  Day 1: Pick a niche and problem<br>
-  Day 2: Design your simple tool<br>
-  Day 3: Build a landing page<br>
-  Day 4: Build first version<br>
-  Day 5: Show it to users<br>
-  Day 6: Improve based on feedback<br>
-  Day 7: Launch
-  `;
-}
-
-document.getElementById("result").innerHTML = `
-  <h3>Your best path: ${path}</h3>
-  <div>${plan}</div>
-  <br>
-  <div>${steps}</div>
-`;
-}
-</script>
-
-</body>
-</html>
 
 async function savePlan() {
   const email = document.getElementById("email").value;
@@ -228,3 +138,8 @@ async function loadPlan() {
     alert("No plan found for this email.");
   }
 }
+</script>
+
+</body>
+</html>
+
