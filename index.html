@@ -129,11 +129,53 @@ if (money === "0" && time !== "low") {
 }
 
   document.getElementById("result").style.display = "block";
-  document.getElementById("result").innerHTML = `
-    <h3>Your best path: ${path}</h3>
-    <div>${plan}</div>
-    <p><strong>Next step:</strong> Start by researching your first potential customer today.</p>
+let steps = "";
+
+if (path === "Local Business AI") {
+  steps = `
+  <strong>Your 7-Day Plan:</strong><br>
+  Day 1: Choose one niche (restaurants, gyms, dentists)<br>
+  Day 2: Find 20 businesses on Google Maps<br>
+  Day 3: Write your offer message<br>
+  Day 4: Contact 10 businesses<br>
+  Day 5: Follow up with yesterday’s contacts<br>
+  Day 6: Book your first call<br>
+  Day 7: Close your first client
   `;
+}
+
+if (path === "Freelancing") {
+  steps = `
+  <strong>Your 7-Day Plan:</strong><br>
+  Day 1: Choose one service to sell<br>
+  Day 2: Create Fiverr or Upwork profile<br>
+  Day 3: Write 3 gig offers<br>
+  Day 4: Send 10 proposals<br>
+  Day 5: Improve your profile<br>
+  Day 6: Send 10 more proposals<br>
+  Day 7: Land your first client
+  `;
+}
+
+if (path === "Software / AI Tools") {
+  steps = `
+  <strong>Your 7-Day Plan:</strong><br>
+  Day 1: Pick a niche and problem<br>
+  Day 2: Design your simple tool<br>
+  Day 3: Build a landing page<br>
+  Day 4: Build first version<br>
+  Day 5: Show it to users<br>
+  Day 6: Improve based on feedback<br>
+  Day 7: Launch
+  `;
+}
+
+document.getElementById("result").innerHTML = `
+  <h3>Your best path: ${path}</h3>
+  <div>${plan}</div>
+  <br>
+  <div>${steps}</div>
+`;
 }
 </script>
 
