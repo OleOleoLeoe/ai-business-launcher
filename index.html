@@ -102,21 +102,36 @@ function generate() {
   let path = "";
   let plan = "";
 
-  if (money === "0" && time !== "low") {
-    path = "Freelancing";
-    plan = "Offer services like AI setup, social media help, or website creation to clients who already have money.";
-  } else if (style === "people") {
-    path = "Local Business AI";
-    plan = "Sell AI tools like chatbots or automation to local businesses for monthly fees.";
-  } else {
-    path = "Software / AI Tools";
-    plan = "Build a simple AI tool and charge users monthly to use it.";
-  }
+if (money === "0" && time !== "low") {
+  path = "Freelancing";
+  plan = `
+  <strong>What to sell:</strong> Websites, AI setup, social media services<br>
+  <strong>Who to sell to:</strong> Small online businesses<br>
+  <strong>How to get clients:</strong> Fiverr, Upwork, cold DMs<br>
+  <strong>How you make money:</strong> $50 – $500 per job
+  `;
+} else if (style === "people") {
+  path = "Local Business AI";
+  plan = `
+  <strong>What to sell:</strong> AI chatbots & automation for restaurants, gyms, shops<br>
+  <strong>Who to sell to:</strong> Local business owners<br>
+  <strong>How to get clients:</strong> Google Maps + cold email or walk-ins<br>
+  <strong>How you make money:</strong> $99 per business per month
+  `;
+} else {
+  path = "Software / AI Tools";
+  plan = `
+  <strong>What to sell:</strong> A simple AI web tool<br>
+  <strong>Who to sell to:</strong> A niche (coaches, shops, agents)<br>
+  <strong>How to get users:</strong> Social media + landing page<br>
+  <strong>How you make money:</strong> $10–$50 per user per month
+  `;
+}
 
   document.getElementById("result").style.display = "block";
   document.getElementById("result").innerHTML = `
     <h3>Your best path: ${path}</h3>
-    <p>${plan}</p>
+    <div>${plan}</div>
     <p><strong>Next step:</strong> Start by researching your first potential customer today.</p>
   `;
 }
